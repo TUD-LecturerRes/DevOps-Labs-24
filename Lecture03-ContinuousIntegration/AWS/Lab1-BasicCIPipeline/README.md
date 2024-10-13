@@ -9,6 +9,9 @@ Create a simple Python application, set up a GitHub repository, and configure a 
 - AWS CLI installed and configured
 - Git installed locally
 
+## Note for Azure Lab Completers
+If you have already completed the Azure version of this lab, you can skip steps 1 and 2. Your GitHub repository is already set up with the initial Python application. You can proceed directly to step 3 to set up the AWS CodeCommit repository and continue from there. Note that you'll be using the same GitHub repository for both Azure and AWS integrations.
+
 ## Steps
 
 ### 1. Create a Simple Python Application
