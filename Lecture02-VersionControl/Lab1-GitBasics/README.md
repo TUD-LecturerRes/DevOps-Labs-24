@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Visual Studio installed with Python support
+- VS Code installed with Python extension
 - Git for Windows installed
 
 ## Step 1: Git Setup and Configuration
@@ -21,48 +21,42 @@
 
 ## Step 2: Creating and Managing a Local Repository
 
-1. Open Visual Studio
+1. Open VS Code
 
-2. Click on "Create a new project"
+2. Click on "File" > "Open Folder" and create a new folder named "GitBasicsLab"
 
-3. Choose "Python Application" and click "Next"
+3. Once the folder is open in VS Code, open the integrated terminal by going to "View" > "Terminal"
 
-4. Name your project "GitBasicsLab" and choose a location to save it
-
-5. Click "Create"
-
-6. Once the project is created, go to "View" > "Terminal" to open the integrated terminal
-
-7. In the terminal, initialize a new Git repository:
+4. In the terminal, initialize a new Git repository:
    ```
    git init
    ```
 
-8. Create a new file named "README.md" in your project root:
+5. Create a new file named "README.md" in your project root:
    ```
    echo # Git Basics Lab > README.md
    ```
 
-9. Stage the new file:
+6. Stage the new file:
    ```
    git add README.md
    ```
 
-10. Commit the changes:
-    ```
-    git commit -m "Initial commit: Add README.md"
-    ```
+7. Commit the changes:
+   ```
+   git commit -m "Initial commit: Add README.md"
+   ```
 
-11. View the commit history:
-    ```
-    git log
-    ```
+8. View the commit history:
+   ```
+   git log
+   ```
 
 ## Step 3: Working with Changes
 
-1. Open the "GitBasicsLab.py" file in Visual Studio
+1. In VS Code, create a new file named "GitBasicsLab.py"
 
-2. Replace the contents with the following Python code:
+2. Add the following Python code to the file:
    ```python
    print("Hello, Git!")
    ```
@@ -109,4 +103,4 @@
     git checkout -- GitBasicsLab.py
     ```
 
-12. Verify that the last change was reverted by opening "GitBasicsLab.py" in Visual Studio
+12. Verify that the last change was reverted by opening "GitBasicsLab.py" in VS Code
