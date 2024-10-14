@@ -46,7 +46,10 @@ Now you'll link your local repository to the GitHub repository you just created.
    git push -u origin main
    ```
    This uploads your local commits to GitHub. The `-u` flag sets up tracking, so in future you can simply use `git push`.
-7. Refresh your GitHub page to see your code now on GitHub
+   
+   Note: If you encounter a credentials error, it's likely due to authentication issues
+
+8. Refresh your GitHub page to see your code now on GitHub
 
 ## Step 3: Making and Pushing Changes
 
