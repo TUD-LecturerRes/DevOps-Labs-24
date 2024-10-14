@@ -43,7 +43,7 @@ Now you'll link your local repository to the GitHub repository you just created.
    This shows you the remote repositories connected to your local repository.
 6. Push your local repository to GitHub:
    ```
-   git push -u origin master
+   git push -u origin main
    ```
    This uploads your local commits to GitHub. The `-u` flag sets up tracking, so in future you can simply use `git push`.
 7. Refresh your GitHub page to see your code now on GitHub
