@@ -34,7 +34,7 @@
 
 5. Create a new file named "README.md" in your project root:
    ```
-   echo # Git Basics Lab > README.md
+   cmd /c "echo # Git Basics Lab > README.md"
    ```
 
 6. Stage the new file:
