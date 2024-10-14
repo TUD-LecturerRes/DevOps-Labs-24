@@ -68,39 +68,55 @@
    git status
    ```
 
-5. View the differences:
-   ```
-   git diff
-   ```
-
-6. Stage the changes:
+5. Stage the new file:
    ```
    git add GitBasicsLab.py
    ```
 
-7. Commit the changes:
-   ```
-   git commit -m "Update GitBasicsLab.py to print Hello, Git!"
-   ```
-
-8. View the updated commit history:
-   ```
-   git log
-   ```
-
-9. Make another change to "GitBasicsLab.py", adding a new line to print the current date:
+6. Now, modify the "GitBasicsLab.py" file, changing the content to:
    ```python
-   import datetime
-
    print("Hello, Git!")
-   print(f"Today is {datetime.date.today()}")
+   print("Learning about git diff.")
    ```
 
-10. Save the file
+7. Save the file
 
-11. To practice reverting changes, use:
+8. Now use git diff to see the changes:
+   ```
+   git diff
+   ```
+   You should see the new line you added.
+
+9. Stage the changes:
+   ```
+   git add GitBasicsLab.py
+   ```
+
+10. Commit the changes:
+    ```
+    git commit -m "Create GitBasicsLab.py with initial content"
+    ```
+
+11. Make another change to "GitBasicsLab.py", adding a new line to print the current date:
+    ```python
+    import datetime
+
+    print("Hello, Git!")
+    print("Learning about git diff.")
+    print(f"Today is {datetime.date.today()}")
+    ```
+
+12. Save the file
+
+13. Use git diff again to see the new changes:
+    ```
+    git diff
+    ```
+    You should see the import statement and the new print line.
+
+14. To practice reverting changes, use:
     ```
     git checkout -- GitBasicsLab.py
     ```
 
-12. Verify that the last change was reverted by opening "GitBasicsLab.py" in VS Code
+15. Verify that the last change was reverted by opening "GitBasicsLab.py" in VS Code and by using git diff (which should now show no output as there are no unstaged changes)
