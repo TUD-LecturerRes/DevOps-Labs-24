@@ -82,7 +82,7 @@ This workflow - edit, stage, commit, push - is the core of working with Git and 
 
 ## Step 4: Pulling Changes
 
-Now you'll learn how to pull changes made on GitHub to your local repository.
+Now you'll learn how to check for changes in the remote repository and pull them to your local repository.
 
 1. On the GitHub website, navigate to your "PythonGitLab" repository
 2. Click on the "GitBasicsLab.py" file
@@ -92,16 +92,36 @@ Now you'll learn how to pull changes made on GitHub to your local repository.
    print("This line was added directly on GitHub.")
    ```
 5. Scroll down, add a commit message like "Update GitBasicsLab.py via GitHub", and click "Commit changes"
-6. In VS Code's terminal, pull the changes:
+
+6. In VS Code's terminal, fetch the latest changes from the remote repository without merging them:
+   ```
+   git fetch
+   ```
+   This command downloads the latest information from the remote repository but doesn't change your local files yet.
+
+7. Check the difference between your local `main` branch and the remote `origin/main` branch:
+   ```
+   git diff main origin/main
+   ```
+   This will show you the changes that exist in the remote repository but not in your local repository. You should see the line you added on GitHub.
+
+8. If you want to see a summary of what files have changed, you can use:
+   ```
+   git diff --stat main origin/main
+   ```
+   This gives you a more concise overview of the changes.
+
+9. Now that you've reviewed the changes, pull them into your local repository:
    ```
    git pull
    ```
    This downloads and merges the changes from GitHub into your local repository.
-7. Open "GitBasicsLab.py" in VS Code to see the changes you made on GitHub now in your local file
+
+10. Open "GitBasicsLab.py" in VS Code to verify that the changes you made on GitHub are now in your local file.
 
 ## Step 5: Handling Conflicts (Simulation)
 
-Merge conflicts occur when Git can't automatically merge changes. This step simulates a conflict and shows you how to resolve it.
+Merge conflicts occur when Git can't automatically merge changes. This step simulates a conflict and shows you how to resolve it using both the command line and VS Code's visual interface.
 
 1. In VS Code, modify "GitBasicsLab.py" by adding a line:
    ```python
@@ -122,18 +142,48 @@ Merge conflicts occur when Git can't automatically merge changes. This step simu
    git pull
    ```
    This should result in a merge conflict
-6. Open "GitBasicsLab.py" in VS Code, you'll see conflict markers. Resolve the conflict by keeping both lines:
+
+6. VS Code will detect the conflict and show it in the Source Control view:
+   - Open the Source Control view by clicking on the branching icon in the left sidebar
+   - You'll see the conflicting file (GitBasicsLab.py) marked with a '!' icon
+
+7. Open "GitBasicsLab.py". VS Code will show the conflicts with special markers:
+   ```
+   <<<<<<< HEAD
+   print("This line was added locally.")
+   =======
+   print("Another line added on GitHub.")
+   >>>>>>> [commit hash]
+   ```
+
+8. VS Code provides several options to resolve the conflict:
+   - You'll see "Accept Current Change", "Accept Incoming Change", "Accept Both Changes", and "Compare Changes" options above the conflict
+   - Click on "Accept Both Changes" to keep both lines
+
+9. After resolving the conflict, the file will look like this:
    ```python
    print("This line was added locally.")
    print("Another line added on GitHub.")
    ```
-7. Stage the resolved file, commit, and push:
-   ```
-   git add GitBasicsLab.py
-   git commit -m "Resolve merge conflict"
-   git push
-   ```
+10. Save the file
 
-Resolving merge conflicts is an important skill when working in teams or on multiple machines.
+11. Return to the command line to complete the process. In VS Code's integrated terminal:
+
+    Stage the resolved file:
+    ```
+    git add GitBasicsLab.py
+    ```
+
+    Commit the changes:
+    ```
+    git commit -m "Resolve merge conflict"
+    ```
+
+    Push the changes to GitHub:
+    ```
+    git push
+    ```
+
+12. Refresh your GitHub repository page to confirm that the changes have been successfully pushed.
 
 By completing this lab, you've learned how to work with remote repositories, push and pull changes, and handle basic merge conflicts. These skills form the foundation of collaborative development using Git and GitHub.
