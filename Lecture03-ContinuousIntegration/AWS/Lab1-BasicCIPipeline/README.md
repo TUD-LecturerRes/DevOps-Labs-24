@@ -57,10 +57,11 @@ git push -u origin main
 
 ### 3. Set up AWS CodeCommit Repository
 
-a. Open the AWS Console and navigate to CodeCommit
+a. Login to AWS Academy and Launch AWS Academy Learner Lab. Accept Terms and Conditions and Start Lab. Wait to the Lab to start (~5 min)
+b. Open the AWS Console and navigate to CodeCommit. You will be operating in N. Virginia region.
 b. Click "Create repository"
-c. Name it "hello-world-python" and create
-d. Note down the HTTPS clone URL
+d. Name it "hello-world-python" and create
+e. Note down the HTTPS clone URL
 
 ### 4. Configure AWS CodeBuild
 Note: We will discuss the build process in more details during the next lecture
