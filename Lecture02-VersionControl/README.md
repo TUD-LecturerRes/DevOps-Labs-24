@@ -6,7 +6,6 @@ This directory contains materials for Lecture 2, focusing on Version Control and
 2. [GitHub and Remote Repositories](./Lab2-GitHubRemotes)
 3. [Branching and Merging](./Lab3-BranchingMerging)
 4. [Git Workflow and Best Practices](./Lab4-GitWorkflowBestPractices)
-5. [Troubleshooting and Advanced Git Operations](./Lab5-TroubleshootingAdvancedGit)
 
 Each lab directory contains a README.md file with instructions and any necessary resources.
 
@@ -23,9 +22,6 @@ Creating and managing branches, merging changes, and resolving conflicts.
 
 ### Lab 4: Git Workflow and Best Practices (Optional)
 Advanced Git techniques including .gitignore, tagging, interactive rebasing, and Git hooks.
-
-### Lab 5: Troubleshooting and Advanced Git Operations (Optional)
-Advanced Git operations such as reverting commits, cherry-picking, stashing, bisecting, and working with submodules.
 
 ## Prerequisites
 

@@ -6,17 +6,9 @@ Welcome to the DevOps Labs repository for TU Dublin. This repository contains ma
 
 The course is divided into several lectures, each focusing on a different aspect of DevOps. Currently, the repository includes:
 
-1. [Introduction](./Lecture01-Introduction)
-2. [Version Control & Git](./Lecture02-VersionControl)
-3. [Continuous Integration](./Lecture03-ContinuousIntegration)
-4. [Build Automation](./Lecture04-BuildAutomation)
-5. [Testing and How to Write Unit Tests](./Lecture05-Testing)
-6. [Continuous Code Quality](./Lecture06-CodeQuality)
-7. [CI/CD Tools](./Lecture07-CICDTools)
-8. [Continuous Software Delivery](./Lecture08-ContinuousDelivery)
-9. [UAT](./Lecture09-UAT)
-10. [Performance and Security Testing](./Lecture10-PerformanceSecurityTesting)
-11. [ARM Templates](./Lecture11-ARMTemplates)
+1. [Version Control & Git](./Lecture02-VersionControl)
+2. [Continuous Integration](./Lecture03-ContinuousIntegration)
+
 
 ## Getting Started
 
@@ -29,7 +21,7 @@ To get started with the labs:
 
 2. Clone this repository to your local machine:
    ```
-   git clone https://github.com/TUD-LecturerRes/DevOps-Labs-TUDublin.git
+   git clone https://github.com/TUD-LecturerRes/DevOps-Labs-24.git
    ```
 
 3. Navigate to the specific lecture and lab you're working on.

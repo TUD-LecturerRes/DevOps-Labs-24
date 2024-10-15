@@ -2,8 +2,8 @@
 
 This directory contains materials for Lecture 3, focusing on Continuous Integration (CI). There are 2 labs in this section, each with versions for both AWS and Azure:
 
-1. [Basic CI Pipeline](./aws/Lab1-BasicCIPipeline) (AWS) / [Basic CI Pipeline](./azure/Lab1-BasicCIPipeline) (Azure)
-2. [Branch Protection and CI Checks](./aws/Lab2-BranchProtectionAndCIChecks) (AWS) / [Branch Protection and CI Checks](./azure/Lab2-BranchProtectionAndCIChecks) (Azure)
+1. [Basic CI Pipeline](./azure/Lab1-BasicCIPipeline) (Azure)
+2. [Branch Protection and CI Checks](./azure/Lab2-BranchProtectionAndCIChecks) (Azure)
 
 Each lab directory contains a README.md file with instructions specific to the chosen cloud platform (AWS or Azure).
 
