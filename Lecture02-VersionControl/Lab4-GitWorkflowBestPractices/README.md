@@ -1,7 +1,7 @@
 # Lab 4: Git Workflow and Best Practices
 
 ## Introduction
-This lab introduces advanced Git concepts and best practices that are crucial for efficient and organized software development. You'll learn about .gitignore files, tagging, interactive rebasing, and Git hooks.
+This lab introduces advanced Git concepts and best practices that are crucial for efficient and organized software development. You'll learn about .gitignore files, tagging and interactive rebasing.
 
 ## Prerequisites
 
