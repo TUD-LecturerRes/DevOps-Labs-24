@@ -56,15 +56,19 @@ git push -u origin main
 
 ### 3. Set up Azure DevOps Project
 
-a. Go to dev.azure.com and sign in
-b. Create a new project named "hello-world-python"
-c. Navigate to Repos and note down the clone URL for the Azure Repo
+a. Browse to https://azure.microsoft.com/en-gb/services/devops/ and choose “Start Free”
+
+b. When following the Quick Start Guide here -> https://docs.microsoft.com/en-us/azure/devops/user-guide/sign-up-invite-teammates?view=azure-devops&viewFallbackFrom=vsts login with your X12345678@myTUDublin.ie
+
+c. Create a new project named "hello-world-python"
+
+d. Navigate to Repos and note down the clone URL for the Azure Repo
 
 ### 4. Configure Azure Pipelines
 
 a. In your Azure DevOps project, go to Pipelines
 b. Click "Create Pipeline"
-c. Choose "GitHub" as the location of your code
+c. Choose "GitHub" as the location of your code. Authrize GitHub account as needed. 
 d. Select your "hello-world-python" repository
 e. Choose "Starter pipeline"
 f. Replace the content of the azure-pipelines.yml with:
@@ -103,9 +107,13 @@ g. Click "Save and run"
 ### 5. Set up Azure Repos Sync
 
 a. In your Azure DevOps project, go to Project Settings
+
 b. Navigate to Repos > Repositories
+
 c. Click on "Import a repository"
+
 d. Choose "Import" and enter your GitHub repository URL
+
 e. Click "Import" to start the sync
 
 ### 6. Test the CI Pipeline
