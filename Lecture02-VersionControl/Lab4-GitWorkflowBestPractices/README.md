@@ -122,87 +122,163 @@ c. Demonstrate how .gitignore prevents tracking:
 
 ## 2. Working with Tags
 
-Tags are references to specific points in Git history. They are typically used to mark release points.
+Tags in Git are used to mark specific points in history, typically for release versions. Let's create two different commits and tag them separately, then demonstrate how to pull code based on a tag.
 
-a. Create a lightweight tag:
-   - In the VS Code terminal, run:
-     ```
-     git tag v1.0
-     ```
+a. Make two separate commits:
+   1. Open your GitBasicsLab.py file
+   2. Add a new function:
+      ```python
+      def feature_a():
+          return "This is feature A"
+      ```
+   3. Save the file and commit:
+      ```
+      git add GitBasicsLab.py
+      git commit -m "Add feature A"
+      ```
+   4. Now, add another function:
+      ```python
+      def feature_b():
+          return "This is feature B"
+      ```
+   5. Save and commit again:
+      ```
+      git add GitBasicsLab.py
+      git commit -m "Add feature B"
+      ```
 
-b. Create an annotated tag (includes extra metadata):
-   - Run:
-     ```
-     git tag -a v1.1 -m "Version 1.1 release"
-     ```
+b. Create tags for each commit:
+   1. Tag the first commit:
+      ```
+      git tag -a v1.0 HEAD^ -m "Version 1.0 with feature A"
+      ```
+   2. Tag the second commit:
+      ```
+      git tag -a v1.1 HEAD -m "Version 1.1 with feature B"
+      ```
 
-c. Push tags to GitHub:
-   - Run:
-     ```
-     git push origin --tags
-     ```
+c. Push the tags to the remote repository:
+   ```
+   git push origin --tags
+   ```
 
-d. Use tags to mark release points:
-   - Go to your GitHub repository
-   - Click on "Releases"
-   - Click "Create a new release"
-   - Choose the v1.1 tag
-   - Add release notes and publish the release
+d. Pulling code based on a tag:
+   1. First, let's simulate working on a different machine by creating a new directory:
+      ```
+      mkdir test_tag_pull
+      cd test_tag_pull
+      ```
+   2. Clone your repository:
+      ```
+      git clone <your-repo-url>
+      ```
+   3. Now, let's checkout the code at v1.0:
+      ```
+      git checkout v1.0
+      ```
+   4. You can verify that only feature A is present in the code at this point.
+
+e. Switching between tagged versions:
+   - To switch to v1.1:
+     ```
+     git checkout v1.1
+     ```
+   - You should now see both feature A and feature B in the code.
 
 ## 3. Interactive Rebasing
 
-Interactive rebasing allows you to modify commits in your branch history. This is useful for cleaning up your commit history before merging.
+Let's go through the process of making three small changes and then using interactive rebase to clean up the commit history.
 
-a. Make several small commits:
-   - Make three small changes to your Python files, committing each separately
+a. Switch back to the main repository:
+   If you're still in the test_tag_pull directory from the previous exercise, navigate back to your main project directory:
+   ```
+   cd ../
+   ```
+   Ensure you're on the main branch:
+   ```
+   git checkout main
+   ```
 
-b. Start an interactive rebase:
-   - In the VS Code terminal, run:
+b. Handle the test_tag_pull directory:
+   You have two options:
+
+   Option 1: Add to .gitignore
+   - Open your .gitignore file and add:
      ```
-     git rebase -i HEAD~3
+     test_tag_pull/
      ```
-
-c. In the interactive mode:
-   - VS Code will open the rebase file. Change "pick" to "squash" for the second and third commits
-   - Save and close the file
-   - In the next file that opens, update the commit message for the squashed commit
-
-d. Force push the rebased history:
-   - Run:
+   - Commit this change:
      ```
-     git push --force
-     ```
-   Note: Be cautious with force push, especially on shared branches!
-
-## 4. Git Hooks
-
-Git hooks are scripts that Git executes before or after events such as commit, push, and receive. They're useful for enforcing standards in your project.
-
-a. Install flake8 (a Python linter):
-   - In the VS Code terminal, run:
-     ```
-     pip install flake8
+     git add .gitignore
+     git commit -m "Add test_tag_pull to .gitignore"
      ```
 
-b. Create a pre-commit hook:
-   - Navigate to your project's .git/hooks directory
-   - Create a new file named "pre-commit" (no extension)
-   - Open it in VS Code and add the following content:
-     ```bash
-     #!/bin/sh
-     flake8 .
-     ```
+   Option 2: Delete the directory
 
-c. Make the hook executable (for Windows):
-   - In PowerShell, run:
-     ```
-     icacls .git\hooks\pre-commit /grant Everyone:RX
-     ```
+c. Make three small changes to your Python files:
+   1. Open GitBasicsLab.py and add a new function:
+      ```python
+      def helper_function_1():
+          return "I'm helping!"
+      ```
+      Commit this change:
+      ```
+      git add GitBasicsLab.py
+      git commit -m "Add helper function 1"
+      ```
 
-d. Demonstrate the hook:
-   - Introduce a style error in one of your Python files (e.g., add an unnecessary semicolon)
-   - Try to commit the change
-   - Observe that the commit is prevented due to the flake8 error
-   - Fix the error and try committing again
+   2. Add another function:
+      ```python
+      def helper_function_2():
+          return "I'm also helping!"
+      ```
+      Commit this change:
+      ```
+      git add GitBasicsLab.py
+      git commit -m "Add helper function 2"
+      ```
 
-By completing this lab, you've learned about important Git features and best practices that will help you maintain a clean and efficient workflow in your projects. Understanding these concepts is crucial for professional software development and collaboration.
+   3. Finally, modify an existing function (e.g., `feature_a`):
+      ```python
+      def feature_a():
+          return "This is the improved feature A"
+      ```
+      Commit this change:
+      ```
+      git add GitBasicsLab.py
+      git commit -m "Improve feature A"
+      ```
+
+d. Start an interactive rebase:
+   ```
+   git rebase -i HEAD~3
+   ```
+
+e. In the interactive mode:
+   1. VS Code will open the rebase file. You'll see something like this:
+      ```
+      pick abc1234 Add helper function 1
+      pick def5678 Add helper function 2
+      pick ghi9012 Improve feature A
+      ```
+   2. Change it to:
+      ```
+      pick abc1234 Add helper function 1
+      squash def5678 Add helper function 2
+      squash ghi9012 Improve feature A
+      ```
+   3. Save and close the file.
+   4. In the next file that opens, update the commit message for the squashed commit. For example:
+      ```
+      Add helper functions and improve feature A
+
+      - Added two helper functions
+      - Improved the implementation of feature A
+      ```
+
+f. After the rebase is complete, force push the rebased history:
+   ```
+   git push --force
+   ```
+
+Remember, force pushing rewrites history, so be cautious when doing this on shared branches. It's generally safe on your own feature branches that haven't been merged yet.
