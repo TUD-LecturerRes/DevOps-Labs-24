@@ -1,7 +1,7 @@
 # Lab 2: Implementing Branch Protections and CI Checks (Azure Version)
 
 ## Objective
-Set up branch protection rules in GitHub and configure CI checks to enforce code quality before merging, using Azure DevOps services.
+Set up branch protection rules in GitHub and configure CI checks to enforce code quality before merging, using Azure DevOps services for CI/CD.
 
 ## Prerequisites
 - Completed Lab 1 (Azure version)
@@ -31,7 +31,7 @@ a. Go to your GitHub repository
 
 b. Click on "Settings" > "Branches"
 
-c. Under "Branch protection rules", click "Add rule"
+c. Under "Branch protection rules", click "Add classic branch protection rule"
 
 d. For "Branch name pattern", enter `main`
 
@@ -105,28 +105,20 @@ steps:
     artifactName: 'drop'
 ```
 
-### 5. Configure Branch Policies in Azure Repos
+### 5. Test the CI Pipeline
 
-a. Go to Azure Repos in your project
+a. Create a pull request from `development` to `main` in GitHub
 
-b. Click on "Branches"
+b. Observe the pipeline run in Azure DevOps and check results
 
-c. Find the `main` branch and click on the three dots (...), then "Branch policies"
+c. If there are linting errors, fix them in your local development branch, commit, and push again
 
-d. Enable "Require a minimum number of reviewers"
+d. Once all checks pass, complete the pull request in GitHub
 
-e. Under "Build validation", add your pipeline and select "Require"
+## Note on Branch Protection in Azure DevOps
 
-### 6. Test the CI Pipeline
-
-a. Create a pull request from `development` to `main` in Azure Repos
-
-b. Observe the pipeline run and check results
-
-c. If there are linting errors, fix them and push again
-
-d. Once all checks pass, complete the pull request
+While this lab focuses on GitHub for repository management and branch protection, it's worth noting that Azure DevOps also offers branch protection policies for Azure Repos. In a project that primarily uses Azure DevOps for both source control and CI/CD, you would configure these policies in the Azure DevOps project settings. However, for this lab, we're using the GitHub branch protection features to keep our source control management consistent.
 
 ## Conclusion
 
-You have now set up branch protection rules and implemented basic code quality checks in your CI pipeline using Azure DevOps services. This ensures that all code merged into the main branch passes automated checks and has been reviewed, improving overall code quality and collaboration in your development process.
+You have now set up branch protection rules in GitHub and implemented basic code quality checks in your CI pipeline using Azure DevOps services. This ensures that all code merged into the main branch passes automated checks and has been reviewed, improving overall code quality and collaboration in your development process.
