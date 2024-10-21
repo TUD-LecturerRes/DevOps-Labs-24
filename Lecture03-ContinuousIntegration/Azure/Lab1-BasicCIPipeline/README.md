@@ -32,7 +32,7 @@ b. Navigate to the directory:
 cd hello-world-python
 ```
 
-c. Create a file named `app.py` with the following content:
+c. Create a file named app.py with the following content:
 ```python
 def hello():
     return 'Hello, World!'
@@ -41,7 +41,7 @@ if __name__ == '__main__':
     print(hello())
 ```
 
-d. Create a file named `requirements.txt` (leave it empty for now)
+d. Create a file named requirements.txt (leave it empty for now)
 
 ### 2. Set up a GitHub Repository
 
@@ -140,7 +140,7 @@ e. Click "Import" to start the sync
 
 ### 7. Test the CI Pipeline
 
-a. Make a change to your `app.py` file locally, e.g.:
+a. Make a change to your app.py file locally, e.g.:
 ```python
 def hello():
     return 'Hello, CI World!'
@@ -150,12 +150,19 @@ b. Commit and push the change:
 ```bash
 git add app.py
 git commit -m "Update hello message"
+git pull origin main  # Fetch and merge changes from remote
 git push origin main
 ```
 
+Note: If you encounter a 'rejected' error when pushing, it means there are changes in the remote repository that you don't have locally. Always pull before pushing to avoid this issue.
+
 c. Go to Azure Pipelines and watch your pipeline run automatically
 
-d. Check the build logs to see the build process
+d. Once the build is completed, click on the build number to view the build details
+
+e. In the build details, click on "Jobs" to see the job details and each step of the build process
+
+f. You can also check the "Artifacts" section to see the produced build artifacts (in this case, the "drop" folder containing the app code)
 
 ### 8. Verify Azure Repos Sync
 
@@ -163,6 +170,16 @@ a. Go to Azure Repos in your project
 
 b. Verify that the changes you pushed to GitHub are now in Azure Repos
 
+## Additional Tips
+
+- Always ensure your local repository is up to date by running `git pull origin main` before making changes or pushing to avoid conflicts
+
+- If you encounter issues with the pipeline, check the build logs for error messages. These can provide valuable information for troubleshooting
+
+- Remember that the azure-pipelines.yml file is committed to your GitHub repository when you save the pipeline. This is normal and allows version control of your pipeline configuration
+
+- If you need to make changes to the pipeline later, you can do so by editing the azure-pipelines.yml file either in Azure DevOps or in your GitHub repository
+
 ## Conclusion
 
-In this lab, you have successfully set up a basic CI pipeline using GitHub and Azure DevOps. You created a simple Python application, established a GitHub repository, configured Azure Pipelines to build your application, and set up synchronization between GitHub and Azure Repos. This foundation will serve as a starting point for more complex CI/CD workflows in future labs.
+In this lab, you have successfully set up a basic CI pipeline using GitHub and Azure DevOps. You created a simple Python application, established a GitHub repository, configured Azure Pipelines to build your application, and set up synchronization between GitHub and Azure Repos. You've also learned how to view build details and artifacts. This foundation will serve as a starting point for more complex CI/CD workflows in future labs.
