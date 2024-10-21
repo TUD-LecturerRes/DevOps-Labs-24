@@ -107,13 +107,27 @@ steps:
 
 ### 5. Test the CI Pipeline
 
-a. Create a pull request from `development` to `main` in GitHub
+a. Create a pull request from `development` to `main` in GitHub:
+   - Go to your GitHub repository
+   - Click on the "Pull requests" tab
+   - Click "New pull request"
+   - Set "base" to "main" and "compare" to "development"
+   - Review the changes, then click "Create pull request"
+   - Add a title and description, then click "Create pull request" again
 
 b. Observe the pipeline run in Azure DevOps and check results
 
 c. If there are linting errors, fix them in your local development branch, commit, and push again
 
-d. Once all checks pass, complete the pull request in GitHub
+d. Once all checks pass, complete the pull request in GitHub:
+   - Click on "Merge pull request"
+   - Then click "Confirm merge"
+
+e. After merging, observe that a new pipeline run is triggered in Azure DevOps:
+   - This run will be for the main branch, incorporating the newly merged changes
+   - Wait for this pipeline to complete successfully
+
+Note: The second pipeline run (on the main branch) occurs because we set up the trigger for both 'main' and 'development' branches in our azure-pipelines.yml file. This ensures that our code is tested again after merging, which is a good practice to catch any potential issues that might arise from the merge process.b
 
 ## Note on Branch Protection in Azure DevOps
 
