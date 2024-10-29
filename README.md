@@ -8,7 +8,7 @@ The course is divided into several lectures, each focusing on a different aspect
 
 1. [Version Control & Git](./Lecture02-VersionControl)
 2. [Continuous Integration](./Lecture03-ContinuousIntegration)
-
+3. [Build Automation and Testing](./Lecture04-BuildAutomationAndTesting)
 
 ## Getting Started
 
