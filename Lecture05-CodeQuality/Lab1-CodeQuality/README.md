@@ -491,7 +491,7 @@ Implement continuous code quality checks by setting up an automated pipeline in 
 5. Note down `your-sonarcloud-organization-key` and `your-project-key` (you'll need this later)
 6. Choose the free plan and click "Create Organization"
 
-#### 3. Create a Public GitHub Repository
+#### 3. Create a Private GitHub Repository
 
 1. Log in to your GitHub account
 2. Click the "+" icon in the top right and select "New repository"
