@@ -953,3 +953,139 @@ Answer the following questions:
 4. Which issues do you think are the most critical to address, and why?
 
 By completing this lab, you'll gain hands-on experience with introducing, identifying, and fixing common code quality issues and security vulnerabilities, reinforcing the importance of static code analysis and continuous improvement in the development process.
+
+### Section 5: Structuring the Pipeline and Producing Build Artifacts
+
+In this section, we'll improve the structure of our Azure DevOps pipeline and configure it to produce a build artifact. This will enhance the pipeline's organization and provide a tangible output that can be used for deployment or further testing.
+
+#### Objective
+- Restructure the pipeline into logical stages
+- Produce a build artifact (JAR file) from our Java project
+- Understand the benefits of a well-structured pipeline and build artifacts
+
+#### Steps
+
+1. Update your `azure-pipelines.yml` file with the following structure:
+
+```yaml
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildJob
+    steps:
+    - task: Gradle@3
+      inputs:
+        workingDirectory: ''
+        gradleWrapperFile: 'gradlew'
+        gradleOptions: '-Xmx3072m'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '17'
+        jdkArchitectureOption: 'x64'
+        publishJUnitResults: true
+        testResultsFiles: '**/TEST-*.xml'
+        tasks: 'clean build test jacocoTestReport'
+    
+    - task: PublishCodeCoverageResults@2
+      inputs:
+        summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/build/reports/jacoco/test/jacocoTestReport.xml'
+        pathToSources: '$(System.DefaultWorkingDirectory)/src/main/java/'
+
+    - task: CopyFiles@2
+      inputs:
+        contents: '**/build/libs/*.jar'
+        targetFolder: '$(build.artifactStagingDirectory)'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: '$(Build.ArtifactStagingDirectory)'
+        artifactName: 'drop'
+
+- stage: CodeAnalysis
+  jobs:
+  - job: SonarCloudAnalysis
+    steps:
+    - checkout: self
+      fetchDepth: 0
+
+    - task: SonarCloudPrepare@3
+      inputs:
+        SonarCloud: 'SonarConnection'
+        organization: 'your-sonarcloud-organization'
+        scannerMode: 'other'
+        extraProperties: |
+          sonar.projectKey=your-project-key
+          sonar.projectName=your-project-name
+
+    - task: Gradle@3
+      inputs:
+        workingDirectory: ''
+        gradleWrapperFile: 'gradlew'
+        gradleOptions: '-Xmx3072m'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '17'
+        jdkArchitectureOption: 'x64'
+        tasks: 'sonar'
+
+    - task: SonarCloudPublish@3
+      inputs:
+        pollingTimeoutSec: '300'
+```
+
+2. Commit and push this updated `azure-pipelines.yml` file to your repository.
+
+3. Run the pipeline in Azure DevOps and observe the new structure and artifact production.
+
+#### Explanation
+
+Let's break down the key components and changes in this updated pipeline:
+
+1. **Variables**: 
+   - We've added a `buildConfiguration` variable set to 'Release'. This can be used to configure build settings across the pipeline.
+
+2. **Stages**:
+   - The pipeline is now divided into two stages: `Build` and `CodeAnalysis`.
+   - This separation provides a clearer structure and allows for better organization of tasks.
+
+3. **Build Stage**:
+   - Contains the main build and test tasks.
+   - Includes a new task to copy the built JAR file to a staging directory.
+   - Publishes the JAR file as a build artifact.
+
+4. **CodeAnalysis Stage**:
+   - Separate stage for SonarCloud analysis.
+   - Keeps code quality checks logically separate from the main build process.
+
+5. **Artifact Production**:
+   - The `CopyFiles@2` task copies the built JAR file to a staging directory.
+   - The `PublishBuildArtifacts@1` task publishes this JAR file as a build artifact named 'drop'.
+
+#### Benefits of This Structure
+
+1. **Clarity**: The pipeline is now organized into logical stages, making it easier to understand and maintain.
+2. **Separation of Concerns**: Building and code analysis are separate, allowing for independent scaling and management.
+3. **Artifact Production**: The pipeline now produces a tangible output (the JAR file) that can be used for deployment or further testing.
+4. **Flexibility**: This structure makes it easier to add more stages (like deployment) in the future.
+
+#### Accessing the Build Artifact
+
+After the pipeline runs successfully:
+1. Go to the pipeline run summary in Azure DevOps.
+2. Look for the "Artifacts" section.
+3. You should see an artifact named "drop" which contains your JAR file.
+
+This artifact can be downloaded or used in subsequent release pipelines for deployment.
+
+#### Reflection Questions
+
+1. How does structuring the pipeline into stages improve its manageability?
+2. What are the advantages of producing a build artifact?
+3. How might this pipeline structure be extended for a more complex project with multiple components or deployment stages?
